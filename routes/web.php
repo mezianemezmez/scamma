@@ -7,7 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\VisitsController;
 
 Route::get('/', function () {
-    return ['Laravel' => app()->version()];
+    return response()->json([
+        'status' => 'success',
+        'message' => 'DHL Backend API is running',
+        'version' => app()->version(),
+        'api_base' => '/api'
+    ]);
 });
 
 // Middleware validation endpoint (not under /api prefix to avoid bypass)
