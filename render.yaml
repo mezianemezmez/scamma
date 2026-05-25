@@ -1,10 +1,10 @@
 services:
   - type: web
     name: dhl-backend
-    env: php
+    env: docker
     plan: free
-    buildCommand: composer install --no-dev --optimize-autoloader && php artisan key:generate && php artisan storage:link && php artisan migrate --force
-    startCommand: php artisan serve --host=0.0.0.0 --port=$PORT
+    dockerContext: .
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: APP_ENV
         value: production
