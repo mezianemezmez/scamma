@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'], // Changez ceci pour votre domaine cPanel en production
+    'allowed_origins' => ['*'], // Autorise tous les origines pour le moment
 
     'allowed_origins_patterns' => [],
 
