@@ -38,6 +38,9 @@ RUN composer install --no-dev --optimize-autoloader
 # Generate application key
 RUN php artisan key:generate
 
+# Run database migrations
+RUN php artisan migrate --force
+
 # Set permissions
 RUN chmod -R 755 /app/storage \
     && chmod -R 755 /app/bootstrap/cache
