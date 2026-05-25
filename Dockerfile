@@ -26,7 +26,7 @@ WORKDIR /app
 # Copy application files
 COPY . /app
 
-# Create .env file from .env.example for build time
+# Create .env file from .env.example
 RUN cp .env.example .env
 
 # Install dependencies
@@ -34,9 +34,6 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Generate application key
 RUN php artisan key:generate
-
-# Remove .env file so Render environment variables take precedence
-RUN rm .env
 
 # Set permissions
 RUN chmod -R 755 /app/storage \
