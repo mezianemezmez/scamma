@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     unzip \
-    libpq-dev
+    libpq-dev \
+    nginx
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -40,8 +41,11 @@ RUN chown -R www-data:www-data /app \
     && chmod -R 755 /app/storage \
     && chmod -R 755 /app/bootstrap/cache
 
-# Expose port
-EXPOSE 9000
+# Copy nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Start PHP-FPM
-CMD ["php-fpm"]
+# Expose port 80 for HTTP
+EXPOSE 80
+
+# Start nginx and php-fpm
+CMD service php8.2-fpm start && nginx -g 'daemon off;'
