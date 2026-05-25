@@ -41,6 +41,9 @@ RUN php artisan key:generate
 # Run database migrations
 RUN php artisan migrate --force
 
+# Run database seeders
+RUN php artisan db:seed --force
+
 # Set permissions
 RUN chmod -R 755 /app/storage \
     && chmod -R 755 /app/bootstrap/cache
