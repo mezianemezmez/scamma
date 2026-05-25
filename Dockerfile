@@ -26,8 +26,11 @@ WORKDIR /app
 # Copy application files
 COPY . /app
 
-# Create .env file from .env.example
-RUN cp .env.example .env
+# Create minimal .env file for build
+RUN echo "APP_ENV=production" > .env && \
+    echo "APP_DEBUG=false" >> .env && \
+    echo "APP_KEY=" >> .env && \
+    echo "SESSION_DRIVER=file" >> .env
 
 # Install dependencies
 RUN composer install --no-dev --optimize-autoloader
