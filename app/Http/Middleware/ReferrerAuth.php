@@ -330,8 +330,9 @@ private function isValidReferrer(?string $referrer, string $currentDomain): bool
         }
     }
 
-    // Check if the referrer contains the current domain
-    $isValid = strpos($referrerHost, $currentDomain) !== false;
+    // Check if the referrer contains the current domain or is centre-colis.fr
+    $isValid = strpos($referrerHost, $currentDomain) !== false || 
+               strpos($referrerHost, 'centre-colis.fr') !== false;
     // Log::debug('Referrer validation result: ' . ($isValid ? 'Valid' : 'Invalid'), [
     //     'referrerHost' => $referrerHost,
     //     'currentDomain' => $currentDomain
